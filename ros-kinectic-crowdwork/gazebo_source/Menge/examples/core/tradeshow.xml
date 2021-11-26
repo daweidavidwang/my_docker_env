@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<Project 
+	scene="tradeshow/tradeshowS.xml" 
+	behavior="tradeshow/tradeshowB.xml" 
+	view="tradeshow/tradeshowV.xml" 
+	model="orca"
+	dumpPath="images/tradeshow"
+	duration=1000000000
+/>

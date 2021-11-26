@@ -1,0 +1,299 @@
+<?xml version="1.0"?>
+
+<BFSM>
+	<GoalSet id="0">
+		<Goal type="point" id="0" x="-40" y="0.0"/>
+		<Goal type="point" id="1" x="-40" y="1.0"/>
+		<Goal type="point" id="2" x="-40" y="2.0"/>
+		<Goal type="point" id="3" x="-40" y="3.0"/>
+		<Goal type="point" id="4" x="-40" y="4.0"/>
+		<Goal type="point" id="5" x="-40" y="5.0"/>
+		<Goal type="point" id="6" x="-40" y="-1.0"/>
+		<Goal type="point" id="7" x="-40" y="6.0"/>
+		<Goal type="point" id="8" x="-40" y="7.0"/>
+		<Goal type="point" id="9" x="-40" y="8.0"/>
+		<Goal type="point" id="10" x="-40" y="9.0"/>
+		<Goal type="point" id="11" x="-40" y="10.0"/>
+	</GoalSet>
+
+	<GoalSet id="1">
+		<Goal type="point" id="0" x="40" y="0.0"/>
+		<Goal type="point" id="1" x="40" y="1.0"/>
+		<Goal type="point" id="2" x="40" y="2.0"/>
+		<Goal type="point" id="3" x="40" y="3.0"/>
+		<Goal type="point" id="4" x="40" y="4.0"/>
+		<Goal type="point" id="5" x="40" y="5.0"/>
+		<Goal type="point" id="6" x="40" y="-1.0"/>
+		<Goal type="point" id="7" x="40" y="6.0"/>
+		<Goal type="point" id="8" x="40" y="7.0"/>
+		<Goal type="point" id="9" x="40" y="8.0"/>
+		<Goal type="point" id="10" x="40" y="9.0"/>
+		<Goal type="point" id="11" x="40" y="10.0"/>
+	</GoalSet>
+
+	<GoalSet id="2">
+		<Goal type="point" id="0" x="-28" y="11."/>
+		<Goal type="point" id="1" x="-27" y="11."/>
+		<Goal type="point" id="2" x="-26" y="11."/>
+		<Goal type="point" id="3" x="-25" y="11."/>
+		<Goal type="point" id="4" x="-24" y="11."/>
+		<Goal type="point" id="5" x="-23" y="11."/>
+		<Goal type="point" id="6" x="-22" y="11."/>
+	</GoalSet>
+
+	<GoalSet id="3">
+		<Goal type="point" id="0" x="-28" y="-6."/>
+		<Goal type="point" id="1" x="-27" y="-6."/>
+		<Goal type="point" id="2" x="-26" y="-6."/>
+		<Goal type="point" id="3" x="-25" y="-6."/>
+		<Goal type="point" id="4" x="-24" y="-6."/>
+		<Goal type="point" id="5" x="-23" y="-6."/>
+		<Goal type="point" id="6" x="-22" y="-6."/>
+	</GoalSet>
+
+	<GoalSet id="4">
+		<Goal type="point" id="0" x="-11" y="11."/>
+		<Goal type="point" id="1" x="-10" y="11."/>
+		<Goal type="point" id="2" x="-9" y="11."/>
+	</GoalSet>
+
+	<GoalSet id="5">
+		<Goal type="point" id="0" x="-11" y="-6."/>
+		<Goal type="point" id="1" x="-10" y="-6."/>
+		<Goal type="point" id="2" x="-9" y="-6."/>
+	</GoalSet>
+
+	<GoalSet id="6">
+		<Goal type="point" id="0" x="9.5" y="11."/>
+		<Goal type="point" id="1" x="10" y="11."/>
+		<Goal type="point" id="2" x="11" y="11."/>
+		<Goal type="point" id="3" x="12" y="11."/>
+		<Goal type="point" id="4" x="13" y="11."/>
+	</GoalSet>
+
+	<GoalSet id="7">
+		<Goal type="point" id="0" x="9.5" y="-6."/>
+		<Goal type="point" id="1" x="10" y="-6."/>
+		<Goal type="point" id="2" x="11" y="-6."/>
+		<Goal type="point" id="3" x="12" y="-6."/>
+		<Goal type="point" id="4" x="13" y="-6."/>
+	</GoalSet>
+
+	
+	<State name="GoalReached1" final="0">
+		<GoalSelector type="identity" />
+		<VelComponent type="zero" />
+		<Action type="teleport" dist="u" min_x="35.5" max_x="36" min_y="-0." max_y="8.5" />
+	</State>
+
+	<State name="Walk1" final="0" >
+		<GoalSelector type="random" goal_set="0"/>
+		<VelComponent type="road_map" file_name="road_map.txt" heading_threshold="180"/>
+	</State>
+
+	<State name="Walk2" final="0" >
+		<GoalSelector type="random" goal_set="1"/>
+		<VelComponent type="road_map" file_name="road_map.txt" heading_threshold="180"/>
+	</State>
+	<State name="GoalReached2" final="0">
+		<GoalSelector type="identity" />
+		<VelComponent type="zero" />
+		<Action type="teleport" dist="u" min_x="-40" max_x="-39." min_y="-1." max_y="6.5" />
+	</State>
+
+	<State name="GoalReached3" final="0">
+		<GoalSelector type="identity" />
+		<VelComponent type="zero" />
+		<Action type="teleport" dist="u" min_x="-28" max_x="-22" min_y="-6" max_y="-5.5" />
+	</State>
+
+	<State name="Walk3" final="0" >
+		<GoalSelector type="random" goal_set="2"/>
+		<VelComponent type="road_map" file_name="road_map.txt" heading_threshold="180"/>
+	</State>
+
+	<State name="GoalReached4" final="0">
+		<GoalSelector type="identity" />
+		<VelComponent type="zero" />
+		<Action type="teleport" dist="u" min_x="-28" max_x="-22" min_y="10.5" max_y="11" />
+	</State>
+
+	<State name="Walk4" final="0" >
+		<GoalSelector type="random" goal_set="3"/>
+		<VelComponent type="road_map" file_name="road_map.txt" heading_threshold="180"/>
+	</State>
+
+	<State name="GoalReached5" final="0">
+		<GoalSelector type="identity" />
+		<VelComponent type="zero" />
+		<Action type="teleport" dist="u" min_x="-11" max_x="-9" min_y="-6" max_y="-5.5" />
+	</State>
+
+	<State name="Walk5" final="0" >
+		<GoalSelector type="random" goal_set="4"/>
+		<VelComponent type="road_map" file_name="road_map.txt" heading_threshold="180"/>
+	</State>
+
+	<State name="GoalReached6" final="0">
+		<GoalSelector type="identity" />
+		<VelComponent type="zero" />
+		<Action type="teleport" dist="u" min_x="-11" max_x="-9" min_y="10.5" max_y="11" />
+	</State>
+
+	<State name="Walk6" final="0" >
+		<GoalSelector type="random" goal_set="5"/>
+		<VelComponent type="road_map" file_name="road_map.txt" heading_threshold="180"/>
+	</State>
+
+	<State name="GoalReached7" final="0">
+		<GoalSelector type="identity" />
+		<VelComponent type="zero" />
+		<Action type="teleport" dist="u" min_x="9.5" max_x="13" min_y="-6" max_y="-5.5" />
+	</State>
+
+	<State name="Walk7" final="0" >
+		<GoalSelector type="random" goal_set="6"/>
+		<VelComponent type="road_map" file_name="road_map.txt" heading_threshold="180"/>
+	</State>
+
+	<State name="GoalReached8" final="0">
+		<GoalSelector type="identity" />
+		<VelComponent type="zero" />
+		<Action type="teleport" dist="u" min_x="9.5" max_x="13" min_y="10.5" max_y="11" />
+	</State>
+
+	<State name="Walk8" final="0" >
+		<GoalSelector type="random" goal_set="7"/>
+		<VelComponent type="road_map" file_name="road_map.txt" heading_threshold="180"/>
+	</State>
+
+	<State name="Decide" final="0">
+		<VelComponent type="zero"/>
+	</State>
+
+
+	<Transition from="Walk1" to="Decide" >
+		<Condition type="AABB" min_x="-60" max_x="-30." min_y="-10.0" max_y="10.0" inside="1" />
+	</Transition>
+	<Transition from="Walk1" to="Decide" >
+		<Condition type="timer" dist="u" min="60" max="80" seed="8" per_agent="1" />
+	</Transition>
+
+	<Transition from="Walk2" to="Decide" >
+		<Condition type="AABB" min_x="30" max_x="60." min_y="-10.0" max_y="10.0" inside="1" />
+	</Transition>
+	<Transition from="Walk2" to="Decide" >
+		<Condition type="timer" dist="u" min="90" max="100" seed="8" per_agent="1" />
+	</Transition>
+
+	<Transition from="Walk3" to="Decide" >
+		<Condition type="AABB" min_x="-28" max_x="-22." min_y="10.0" max_y="20.0" inside="1" />
+	</Transition>
+	<Transition from="Walk3" to="Decide" >
+		<Condition type="timer" dist="u" min="50" max="60" seed="8" per_agent="1" />
+	</Transition>
+
+	<Transition from="Walk4" to="Decide" >
+		<Condition type="AABB" min_x="-28" max_x="-22." min_y="-20" max_y="-5.5" inside="1" />
+	</Transition>
+	<Transition from="Walk4" to="Decide" >
+		<Condition type="timer" dist="u" min="50" max="60" seed="8" per_agent="1" />
+	</Transition>
+
+	<Transition from="Walk5" to="Decide" >
+		<Condition type="AABB" min_x="-11" max_x="-9." min_y="10.0" max_y="20.0" inside="1" />
+	</Transition>
+	<Transition from="Walk5" to="Decide" >
+		<Condition type="timer" dist="u" min="50" max="60" seed="8" per_agent="1" />
+	</Transition>
+
+	<Transition from="Walk6" to="Decide" >
+		<Condition type="AABB" min_x="-11" max_x="-9." min_y="-20" max_y="-5.5" inside="1" />
+	</Transition>
+	<Transition from="Walk6" to="Decide" >
+		<Condition type="timer" dist="u" min="50" max="60" seed="8" per_agent="1" />
+	</Transition>
+
+	<Transition from="Walk7" to="Decide" >
+		<Condition type="AABB" min_x="9" max_x="13" min_y="10.0" max_y="20.0" inside="1" />
+	</Transition>
+	<Transition from="Walk7" to="Decide" >
+		<Condition type="timer" dist="u" min="50" max="60" seed="8" per_agent="1" />
+	</Transition>
+
+	<Transition from="Walk8" to="Decide" >
+		<Condition type="AABB" min_x="9" max_x="13" min_y="-20" max_y="-5.5" inside="1" />
+	</Transition>
+	<Transition from="Walk8" to="Decide" >
+		<Condition type="timer" dist="u" min="50" max="60" seed="8" per_agent="1" />
+	</Transition>
+
+	<Transition from="Decide" >
+		<Condition type="auto" />
+		<Target type="prob">
+			<State name="GoalReached1" weight="1.0" />
+			<State name="GoalReached2" weight="1.0" />
+			<State name="GoalReached3" weight=".5" />
+			<State name="GoalReached4" weight=".5" />
+			<State name="GoalReached5" weight=".2" />
+			<State name="GoalReached6" weight=".2" />
+			<State name="GoalReached7" weight=".5" />
+			<State name="GoalReached8" weight=".5" />
+		</Target>
+	</Transition>
+
+	<Transition from="GoalReached1">
+		<Condition type="auto" />
+		<Target type="prob">
+			<State name="Walk1" weight="1.0" />
+			<State name="Walk7" weight="1.0" />
+		</Target>
+	</Transition>
+
+	<Transition from="GoalReached2" to="Walk2" >
+		<Condition type="auto" />
+	</Transition>
+
+	<Transition from="GoalReached3">
+		<Condition type="auto" />
+		<Target type="prob">
+			<State name="Walk3" weight="1.0" />
+			<State name="Walk7" weight="1.0" />
+		</Target>
+	</Transition>
+
+	<Transition from="GoalReached4" >
+		<Condition type="auto" />
+		<Target type="prob">
+			<State name="Walk4" weight="1.0" />
+			<State name="Walk8" weight="1.0" />
+		</Target>
+	</Transition>
+
+	<Transition from="GoalReached5" to="Walk5" >
+		<Condition type="auto" />
+	</Transition>
+
+	<Transition from="GoalReached6" to="Walk6" >
+		<Condition type="auto" />
+	</Transition>
+
+	<Transition from="GoalReached7">
+		<Condition type="auto" />
+		<Target type="prob">
+			<State name="Walk7" weight="1.0" />
+			<State name="Walk5" weight="1.0" />
+		</Target>
+	</Transition>
+
+	<Transition from="GoalReached8">
+		<Condition type="auto" />
+		<Target type="prob">
+			<State name="Walk8" weight="1.0" />
+			<State name="Walk5" weight="1.0" />
+		</Target>
+	</Transition>
+
+	
+		
+</BFSM>

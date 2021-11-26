@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<Project 
+	scene="circle/test.xml" 
+	behavior="circle/periodicB.xml" 
+	view="circle/circleV.xml" 
+	model="pedvo"
+	duration="100000000000"
+/>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<Project 
+	scene="airport/S.xml" 
+	behavior="airport/B.xml" 
+	view="airport/V.xml" 
+	model="pedvo"
+	dumpPath="periodic/images"
+	duration=1000000000
+/>

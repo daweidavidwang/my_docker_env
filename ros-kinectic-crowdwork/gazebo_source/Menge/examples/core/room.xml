@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<Project 
+	scene="room/S.xml" 
+	behavior="room/B.xml" 
+	view="room/V.xml" 
+	model="pedvo"
+	dumpPath="periodic/images"
+	duration=1000000000
+/>

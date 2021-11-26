@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+
+<BFSM>
+	<GoalSet id="0">
+		<Goal type="point" id="0" x="20" y="0"/>
+		<Goal type="point" id="1" x="-20" y="0"/>
+		<Goal type="point" id="2" x="20" y="5"/>
+		<Goal type="point" id="3" x="-20" y="5"/>
+	</GoalSet>
+
+	<State name="Walk" final="0" >
+		<GoalSelector type="random" goal_set="0" per_agent="1" />
+		<VelComponent type="road_map" file_name="road_map.txt" heading_threshold="180"/>
+		<!-- <VelComponent type="goal"/> -->
+		<Action type="offset_property" property="priority" dist="c" value="0.0" exit_reset="0"/>
+	</State>
+	<State name="Arrive" final="0">
+		<VelComponent type="zero"/>
+		<Action type="offset_property" property="priority" dist="c" value="1.0" exit_reset="0"/>
+	</State>
+	<State name="Decide" final="0">
+		<VelComponent type="zero"/>
+	</State>
+	<State name="Happy" final="0">
+		<VelComponent type="zero"/>
+	</State>
+	<State name="Angry" final="0">
+		<VelComponent type="zero"/>
+	</State>
+
+	<Transition from="Walk" to="Arrive" >
+		<Condition type="goal_reached" distance="0.4" />
+	</Transition>
+	<!-- <Transition from="Walk" to="Angry" >
+		<Condition type="timer" dist="u" min="15" max="25" seed="8" per_agent="1" />
+	</Transition> -->
+	<Transition from="Arrive" to="Decide" >
+		<Condition type="timer" dist="u" min="2" max="4" seed="5" per_agent="1" />
+	</Transition>
+	<Transition from="Decide" >
+		<Condition type="auto" />
+		<Target type="prob">
+			<State name="Happy" weight="1.0" />
+			<State name="Angry" weight="1.0" />
+		</Target>
+	</Transition>
+	<Transition from="Happy" to="Walk" >
+		<Condition type="timer" dist="u" min="4" max="6" seed="6" per_agent="1" />
+	</Transition>
+	<Transition from="Angry" to="Walk" >
+		<Condition type="timer" dist="u" min="1" max="2" seed="7" per_agent="1" />
+	</Transition>
+		
+</BFSM>

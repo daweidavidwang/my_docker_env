@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+
+<BFSM>
+	<GoalSet id="0">
+		<Goal type="point" id="0" x="-21.37" y="17.42"/>
+		<Goal type="point" id="1" x="-20.56" y="10.98"/>
+		<Goal type="point" id="2" x="-21.7" y="1.8"/>
+		<Goal type="point" id="3" x="-21.1" y="-5.32"/>
+		<Goal type="point" id="4" x="-20.97" y="-15.4"/>
+		<Goal type="point" id="5" x="-15.05" y="17.6"/>
+		<Goal type="point" id="6" x="-14.70" y="11.17"/>
+		<Goal type="point" id="7" x="-13.09" y="-0.7"/>
+		<Goal type="point" id="8" x="-16.2" y="-4.51"/>
+		<Goal type="point" id="9" x="-16.6" y="-8.98"/>
+		<Goal type="point" id="10" x="-13.05" y="11.0"/>
+		<Goal type="point" id="11" x="-14.25" y="-17.5"/>
+		<Goal type="point" id="12" x="-10.47" y="15.02"/>
+		<Goal type="point" id="13" x="-10.96" y="5.67"/>
+		<Goal type="point" id="14" x="-8.58" y="-16.6"/>
+		<Goal type="point" id="15" x="-6.02" y="17.56"/>
+		<Goal type="point" id="16" x="-5.33" y="12.29"/>
+		<Goal type="point" id="17" x="-7.73" y="9.08"/>
+		<Goal type="point" id="18" x="-5.38" y="1.71"/>
+		<Goal type="point" id="19" x="-8.09" y="-2.32"/>
+		<Goal type="point" id="20" x="-5.48" y="-7.51"/>
+		<Goal type="point" id="21" x="-7.13" y="-10.8"/>
+		<Goal type="point" id="22" x="-2.9" y="-15.9"/>
+		<Goal type="point" id="23" x="-1.24" y="8.47"/>
+		<Goal type="point" id="24" x="0.42" y="2.30"/>
+		<Goal type="point" id="25" x="-1.19" y="-3.57"/>
+		<Goal type="point" id="26" x="1.95" y="-8.03"/>
+		<Goal type="point" id="27" x="0.15" y="-12.8"/>
+		<Goal type="point" id="28" x="2.58" y="17.62"/>
+		<Goal type="point" id="29" x="4.86" y="10.99"/>
+		<Goal type="point" id="30" x="5.97" y="2.4"/>
+		<Goal type="point" id="31" x="5.55" y="-4.55"/>
+		<Goal type="point" id="32" x="7.82" y="-9.75"/>
+		<Goal type="point" id="33" x="4.53" y="-14.1"/>
+		<Goal type="point" id="34" x="8.87" y="-17.38"/>
+		<Goal type="point" id="35" x="9.0" y="17.35"/>
+		<Goal type="point" id="36" x="9.19" y="7.86"/>
+		<Goal type="point" id="37" x="11.64" y="3.22"/>
+		<Goal type="point" id="38" x="12.22" y="-0.16"/>
+		<Goal type="point" id="39" x="10.89" y="-4.45"/>
+		<Goal type="point" id="40" x="11.7" y="-13.9"/>
+		<Goal type="point" id="41" x="13.97" y="16.8"/>
+		<Goal type="point" id="42" x="17.33" y="10.2"/>
+		<Goal type="point" id="43" x="14.07" y="7.08"/>
+		<Goal type="point" id="44" x="16.65" y="1.08"/>
+		<Goal type="point" id="45" x="15.77" y="-5.75"/>
+		<Goal type="point" id="46" x="16.02" y="-11.46"/>
+		<Goal type="point" id="47" x="21.14" y="16.94"/>
+		<Goal type="point" id="48" x="20.95" y="8.56"/>
+		<Goal type="point" id="49" x="20.84" y="0.92"/>
+		<Goal type="point" id="50" x="20.86" y="-5.69"/>
+	</GoalSet>
+	
+		<State name="Walk" final="0" >
+			<GoalSelector type="random" goal_set="0" per_agent="1" />
+			<VelComponent type="road_map" file_name="road_map.txt" heading_threshold="180"/>
+			<Action type="offset_property" property="priority" dist="c" value="0.0" exit_reset="0"/>
+		</State>
+		<State name="Arrive" final="0">
+			<VelComponent type="zero"/>
+			<Action type="offset_property" property="priority" dist="c" value="1.0" exit_reset="0"/>
+		</State>
+		<State name="Decide" final="0">
+			<VelComponent type="zero"/>
+		</State>
+		<State name="Happy" final="0">
+			<VelComponent type="zero"/>
+		</State>
+		<State name="Angry" final="0">
+			<VelComponent type="zero"/>
+		</State>
+
+		<Transition from="Walk" to="Arrive" >
+			<Condition type="goal_reached" distance="0.4" />
+		</Transition>
+		<Transition from="Walk" to="Angry" >
+			<Condition type="timer" dist="u" min="15" max="25" seed="8" per_agent="1" />
+		</Transition>
+		<Transition from="Arrive" to="Decide" >
+			<Condition type="timer" dist="u" min="2" max="4" seed="5" per_agent="1" />
+		</Transition>
+		<Transition from="Decide" >
+			<Condition type="auto" />
+			<Target type="prob">
+				<State name="Happy" weight="1.0" />
+				<State name="Angry" weight="1.0" />
+			</Target>
+		</Transition>
+		<Transition from="Happy" to="Walk" >
+			<Condition type="timer" dist="u" min="4" max="6" seed="6" per_agent="1" />
+		</Transition>
+		<Transition from="Angry" to="Walk" >
+			<Condition type="timer" dist="u" min="1" max="2" seed="7" per_agent="1" />
+		</Transition>
+		
+</BFSM>
