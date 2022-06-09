@@ -155,7 +155,7 @@ RUN apt-get install -y ros-kinetic-controller-manager ros-kinetic-joint-state-co
                     ros-kinetic-rqt-joint-trajectory-controller ros-kinetic-ros-control ros-kinetic-rqt-gui\
                   ros-kinetic-rqt-plot ros-kinetic-rqt-graph ros-kinetic-rqt-rviz ros-kinetic-rqt-tf-tree \
                   ros-kinetic-ros-control ros-kinetic-ros-controllers ros-kinetic-polled-camera ros-kinetic-camera-info-manager ros-kinetic-moveit-msgs\
-                  ros-kinetic-kdl-conversions ros-kinetic-kdl-parser ros-kinetic-forward-command-controller ros-kinetic-tf-conversions ros-kinetic-xacro ros-kinetic-joint-state-publisher ros-kinetic-robot-state-publisher &&\
+                  ros-kinetic-kdl-conversions ros-kinetic-kdl-parser ros-kinetic-forward-command-controller ros-kinetic-tf-conversions ros-kinetic-xacro ros-kinetic-joint-state-publisher ros-kinetic-robot-state-publisher \
                   ros-kinetic-turtlebot
 
 RUN cp -r /root/gazebo_source/menge_gazebo /root/menge_ws/src/menge_gazebo &&\

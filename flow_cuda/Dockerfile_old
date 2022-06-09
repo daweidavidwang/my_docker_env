@@ -1,0 +1,34 @@
+FROM fywu85/flow-desktop:latest
+RUN sudo apt-get update &&\
+    sudo apt-get install -y software-properties-common 
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin &&\
+    sudo mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600  &&\
+    sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub &&\
+    sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /" &&\
+    sudo apt-get update &&\
+    wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb &&\
+    sudo apt install -y ./nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb &&\
+    sudo apt-get update &&\
+    wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/libnvinfer6_6.0.1-1+cuda10.0_amd64.deb &&\
+    sudo apt install -y ./libnvinfer6_6.0.1-1+cuda10.0_amd64.deb &&\
+    wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/libnvinfer-dev_6.0.1-1+cuda10.0_amd64.deb &&\
+    sudo apt install -y ./libnvinfer-dev_6.0.1-1+cuda10.0_amd64.deb &&\
+    wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/libnvinfer-plugin6_6.0.1-1+cuda10.0_amd64.deb &&\
+    sudo apt install -y ./libnvinfer-plugin6_6.0.1-1+cuda10.0_amd64.deb &&\
+    sudo apt-get update &&\
+    sudo apt-get install -y --no-install-recommends --allow-downgrades \
+    nvidia-driver-410 \
+    cuda-10-0 \
+    libcudnn7  \
+    libcudnn7-dev
+
+SHELL ["/bin/bash", "--login", "-c"]
+RUN rm -r flow && \
+    git clone https://github.com/daweidavidwang/flow.git && \
+    cd flow && \
+    conda env create -f environment.yml &&\
+    conda init bash && \
+    conda activate flow &&\
+    python setup.py develop && \
+    pip install -e .
+RUN mkdir -p /headless/ray_results
