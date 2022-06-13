@@ -4,4 +4,4 @@ docker run -it --gpus all \
 --env="QT_X11_NO_MITSHM=1" \
 --env="DISPLAY" \
 -v $HOME/.Xauthority:/root/.Xauthority \
-wangdawei1996/rw:v1.0 bash
+wangdawei1996/rw:v1.1 bash

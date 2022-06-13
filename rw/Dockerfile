@@ -26,6 +26,6 @@ RUN echo "Installing system dependencies for SUMO" &&\
     build-essential curl unzip flex bison wget sumo sumo-tools sumo-doc &&\
     pip install cmake cython gputil psutil 
 
-RUN pip uninstall -y enum34 && pip install setuptools scipy dm_tree traci pygame lxml joblib tabulate gym pandas opencv-python requests ray==1.10.0 Pillow sympy
+RUN pip uninstall -y enum34 && pip install setuptools scipy dm_tree traci pygame lxml joblib tabulate pandas opencv-python requests ray==1.10.0 Pillow sympy gym==0.21.0
 
 RUN echo "export LIBGL_ALWAYS_INDIRECT=1" >> ~/.bashrc 
