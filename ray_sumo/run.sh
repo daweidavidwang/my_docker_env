@@ -5,4 +5,4 @@ docker run -it --gpus all \
 --env="DISPLAY" \
 -v $HOME/.Xauthority:/root/.Xauthority \
 --shm-size=10.01gb \
-wangdawei1996/ray_sumo:beta3 bash
+wangdawei1996/ray_sumo:beta4 bash

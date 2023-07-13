@@ -31,3 +31,4 @@ RUN pip uninstall -y enum34 && pip install setuptools scipy dm_tree traci \
 
 
 RUN echo "export LIBGL_ALWAYS_INDIRECT=1" >> ~/.bashrc 
+RUN echo "export SUMO_HOME=/usr/share/sumo" >> ~/.bashrc 
