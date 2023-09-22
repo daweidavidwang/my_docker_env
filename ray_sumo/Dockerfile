@@ -27,7 +27,7 @@ RUN echo "Installing system dependencies for SUMO" &&\
 RUN pip uninstall -y enum34 && pip install setuptools scipy dm_tree traci \
     pygame lxml joblib tabulate pandas requests \
     Pillow sympy easydict statsmodels networkx lz4 tensorboardX pettingzoo \
-    pymunk tensorflow_probability torch torchvision torchaudio higher
+    pymunk tensorflow_probability torch torchvision torchaudio higher tensorboard
 
 
 RUN echo "export LIBGL_ALWAYS_INDIRECT=1" >> ~/.bashrc 

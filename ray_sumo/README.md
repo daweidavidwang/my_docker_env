@@ -1,3 +1,4 @@
-Simple RL env for Tianshou repo
+MixedTrafficControl 
 
-Tested on atari env
+
+docker build -t runoob/ubuntu:v1 . 
