@@ -1,6 +1,5 @@
 docker run -it --gpus all \
--v /home/david/code/:/code \
--v /home/david/limx_ws/:/limx_ws \
+-v $HOME/code/:/code \
 --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
 --env="QT_X11_NO_MITSHM=1" \
 --env="DISPLAY" \
@@ -10,4 +9,5 @@ docker run -it --gpus all \
 --device-cgroup-rule "c 81:* rmw" \
 --device-cgroup-rule "c 189:* rmw" \
 --net=host \
-wangdawei1996/rosnoeticfull:v3 bash
+wangdawei1996/ros2_nav2:rs bash
+

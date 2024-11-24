@@ -10,4 +10,4 @@ docker run -it --gpus all \
 --device-cgroup-rule "c 81:* rmw" \
 --device-cgroup-rule "c 189:* rmw" \
 --net=host \
-wangdawei1996/rosnoeticfull:v3 bash
+wangdawei1996/rosnoeticfull:norob bash

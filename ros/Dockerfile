@@ -51,17 +51,34 @@ RUN cd /usr/src/librealsense \
     && make install 
 
 
+
 FROM osrf/ros:noetic-desktop-focal as baseimage
 ENV DEBIAN_FRONTEND=noninteractive
 # install ros packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-noetic-desktop-full=1.5.0-1* \
     ros-noetic-dynamic-reconfigure \
+    ros-noetic-rgbd-launch \
+    ros-noetic-imu-filter-madgwick \
+    ros-noetic-rtabmap-ros \
+    ros-noetic-robot-localization \
     iputils-ping net-tools \
     apt-transport-https \
     software-properties-common \
+    libusb-1.0-0 \
+    udev \
+    ca-certificates \
+    curl \  
     && rm -rf /var/lib/apt/lists/*
 # apt-key adv --keyserver keyserver.ubuntu.com --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE || sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCD \
+
+## add ros2 and nav2 at the same time
+# RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg \
+#     && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null \
+#     && apt-get update \
+#     && apt-get install ros-foxy-desktop python3-argcomplete ros-dev-tools ros-foxy-navigation2 ros-foxy-nav2-bringup ros-foxy-turtlebot3-gazebo\
+#     && rm -rf /var/lib/apt/lists/*
+
 
 # realsense
 
@@ -108,17 +125,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 #     -DPYTHON_EXECUTABLE=/usr/bin/python3 ../ \
 #     && make -j$(($(nproc)-1)) all \
 #     && make install 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \	
-    libusb-1.0-0 \
-    udev \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common \
-    && rm -rf /var/lib/apt/lists/*
-
-
 RUN mkdir -p /etc/udev/rules.d/ 
 COPY --from=librealsense-builder /opt/librealsense /usr/local/
 COPY --from=librealsense-builder /usr/lib/python3/dist-packages/pyrealsense2 /usr/lib/python3/dist-packages/pyrealsense2
@@ -126,12 +132,19 @@ COPY --from=librealsense-builder /usr/src/librealsense/config/99-realsense-libus
 COPY --from=librealsense-builder /usr/src/librealsense/config/99-realsense-d4xx-mipi-dfu.rules /etc/udev/rules.d/
 ENV PYTHONPATH=$PYTHONPATH:/usr/local/
 
+## install dependency of vins momo and navigation stack, realsense camera ros etc
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \	
     ros-$ROS_DISTRO-realsense2-camera \
     ros-$ROS_DISTRO-realsense2-description \
+    ros-$ROS_DISTRO-geometry2 \
+    libgoogle-glog-dev libgflags-dev libatlas-base-dev libsuitesparse-dev libsdl-image1.2-dev \
+    python3-pip \
     && rm -rf /var/lib/apt/lists/*
+
+## add python dependencies for openai gpt    
+RUN pip3 install openai
 ## LIMX config
-# ENV ROS_IP=10.192.1.218
-# ENV ROS_MASTER_URI=http://10.192.1.2:11311
+ENV ROS_IP=10.192.1.218
+ENV ROS_MASTER_URI=http://10.192.1.2:11311
