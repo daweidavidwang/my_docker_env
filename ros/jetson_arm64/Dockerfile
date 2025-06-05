@@ -120,8 +120,25 @@ RUN apt-get update \
     ros-noetic-realsense2-camera \
     ros-noetic-realsense2-description \
     ros-noetic-geometry2 \
+    ros-noetic-octomap* \
     libgoogle-glog-dev libgflags-dev libatlas-base-dev libsuitesparse-dev libsdl-image1.2-dev \
+    libpcl-dev libeigen3-dev\
     && rm -rf /var/lib/apt/lists/*
+
+# install livox sdk
+# RUN git clone https://github.com/Livox-SDK/Livox-SDK.git \
+#     && cd Livox-SDK \
+#     && mkdir build && cd build \
+#     && cmake .. \
+#     && make -j$(($(nproc)-1)) \
+#     && make install
+
+RUN git clone https://github.com/Livox-SDK/Livox-SDK2.git \
+    && cd Livox-SDK2 \
+    && mkdir build && cd build \
+    && cmake .. \
+    && make -j$(($(nproc)-1)) \
+    && make install
 
 ## LIMX config
 # ENV ROS_IP=10.192.1.218
